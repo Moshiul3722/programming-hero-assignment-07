@@ -55,7 +55,9 @@ export default async function Home() {
           <h2 className="font-semibold text-[24px] mb-4">Your Friends</h2>
           <div className="grid grid-cols-4 gap-4">
             {friendsData.map((friendInfo, index) => (
-              <FriendsCard key={index} friendInfo={friendInfo}></FriendsCard>
+              <Link key={friendInfo.id} href={`/friends/${friendInfo.id}`}>
+                <FriendsCard key={index} friendInfo={friendInfo}></FriendsCard>
+              </Link>
             ))}
           </div>
         </div>
