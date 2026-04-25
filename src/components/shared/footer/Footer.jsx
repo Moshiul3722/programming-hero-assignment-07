@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-[#244D3F] text-base-content rounded pt-20">
-      <div className="text-center text-white">
+      <div className="text-center text-white w-7xl">
         <div>
           <Image
             src={footerLogo}
@@ -21,24 +21,43 @@ const Footer = () => {
           nurture the relationships that matter most.
         </p>
 
-        <h3 className="text-[16px] font-bold mt-6">Social Links</h3>
+        <h3 className="text-[18px] font-bold mt-6 mb-4">Social Links</h3>
         <ul className="flex gap-3">
-          <Link href="instagram.com">
-            <FaInstagramSquare />
-          </Link>
-          <Link href="facebook.com">
-            <FaFacebook />
-          </Link>
-          <Link href="twitter.com">
-            <FaXTwitter />
-          </Link>
+          <li className="w-8 h-8 rounded-full bg-white text-black flex justify-center items-center text-[20px]">
+            <Link href="instagram.com">
+              <FaInstagramSquare />
+            </Link>
+          </li>
+          <li className="w-8 h-8 rounded-full bg-white text-black flex justify-center items-center text-[20px]">
+            <Link href="facebook.com">
+              <FaFacebook />
+            </Link>
+          </li>
+          <li className="w-8 h-8 rounded-full bg-white text-black flex justify-center items-center text-[20px]">
+            <Link href="twitter.com">
+              <FaXTwitter />
+            </Link>
+          </li>
         </ul>
 
-        <aside>
-          <p>
-            Copyright © {new Date().getFullYear()} - All right reserved by ACME
+        <aside className="flex justify-between w-full py-7.5">
+          <div>
+            &copy; {new Date().getFullYear()} KeenKeeper. All rights reserved.
             Industries Ltd
-          </p>
+          </div>
+          <div>
+            <ul className="flex justify-end gap-4">
+              <li>
+                <link href="#"></link>Privacy Policy
+              </li>
+              <li>
+                <link href="#"></link>Terms of Service
+              </li>
+              <li>
+                <link href="#"></link>Cookies
+              </li>
+            </ul>
+          </div>
         </aside>
       </div>
     </footer>
