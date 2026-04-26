@@ -4,12 +4,19 @@ import { FiArchive } from "react-icons/fi";
 import { IoTrashOutline, IoVideocamOutline } from "react-icons/io5";
 import { MdNotificationsPaused } from "react-icons/md";
 import { TbPhoneCall } from "react-icons/tb";
+import { format } from "date-fns";
+import CallButton from "@/components/CallButton";
+import TextButton from "@/components/TextButton";
+import VideoButton from "@/components/VideoButton";
+import { useContext } from "react";
+import { CallButtonContext } from "@/context/callButton.context";
 
 const friendsPromise = async () => {
   const res = await fetch("http://localhost:3000/data.json");
   const data = await res.json();
   return data;
 };
+// const something = useContext(CallButtonContext);
 
 const FriendDetailPage = async ({ params }) => {
   const { id } = await params;
@@ -18,25 +25,30 @@ const FriendDetailPage = async ({ params }) => {
 
   console.log(friend, "Friend Id");
 
+  const { days_since_contact, goal, next_due_date } = friend;
+
   return (
     <div className="w-7xl mx-auto py-20">
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-1 row-span-2">
-          <FriendsCard friendInfo={friend}></FriendsCard>
+          <FriendsCard from="friendDetail" friendInfo={friend}></FriendsCard>
         </div>
         <div className="flex justify-center items-center flex-col shadow-sm">
-          <h2 className="text-[30px] font-semibold text-[#244D3F]">62</h2>
+          <h2 className="text-[30px] font-semibold text-[#244D3F]">
+            {days_since_contact}
+          </h2>
           <p className="text-[18px] font-normal text-[#64748B]">
             Days Since Contact
           </p>
         </div>
         <div className="flex justify-center items-center flex-col shadow-sm">
-          <h2 className="text-[30px] font-semibold text-[#244D3F]">30</h2>
+          <h2 className="text-[30px] font-semibold text-[#244D3F]">{goal}</h2>
           <p className="text-[18px] font-normal text-[#64748B]">Goal (Days)</p>
         </div>
         <div className="flex justify-center items-center flex-col shadow-sm">
           <h2 className="text-[30px] font-semibold text-[#244D3F]">
-            Feb 27, 2026
+            {/* Feb 27, 2026{next_due_date} */}
+            {format(new Date(next_due_date), "MMM dd, yyyy")}
           </h2>
           <p className="text-[18px] font-normal text-[#64748B]">Next Due</p>
         </div>
@@ -54,15 +66,15 @@ const FriendDetailPage = async ({ params }) => {
           </div>
         </div>
         <div className="grid col-span-1 gap-2">
-          <div className="p-4 rounded-md flex justify-center items-center shadow-sm gap-1 text-[26px]">
+          <div className="px-4 py-2 rounded-md flex justify-center items-center shadow-sm gap-1 text-[26px]">
             <MdNotificationsPaused />
             <p className="text-[18px] font-semibold">Snooze 2 weeks</p>
           </div>
-          <div className="p-4 rounded-md flex justify-center items-center shadow-sm gap-1 text-[18px]">
+          <div className="px-4 py-2 rounded-md flex justify-center items-center shadow-sm gap-1 text-[18px]">
             <FiArchive />
             <p className="text-[18px] font-semibold">Archive</p>
           </div>
-          <div className="p-4 rounded-md flex justify-center items-center shadow-sm gap-1 text-[20px] text-red-500">
+          <div className="px-4 py-2 rounded-md flex justify-center items-center shadow-sm gap-1 text-[20px] text-red-500">
             <IoTrashOutline />
             <p className="text-[18px] font-semibold">Delete</p>
           </div>
@@ -73,24 +85,9 @@ const FriendDetailPage = async ({ params }) => {
             Quick Check-In
           </h2>
           <div className="grid grid-cols-3 gap-4">
-            <div className="flex flex-col justify-center items-center p-4 bg-[#F8FAFC] rounded-md">
-              <div className="text-[36px] mb-2">
-                <TbPhoneCall />
-              </div>
-              <p className="text-[18px]">Call</p>
-            </div>
-            <div className="flex flex-col justify-center items-center p-4 bg-[#F8FAFC] rounded-md">
-              <div className="text-[36px] mb-2">
-                <BiMessageDots />
-              </div>
-              <p className="text-[18px]">Call</p>
-            </div>
-            <div className="flex flex-col justify-center items-center p-4 bg-[#F8FAFC] rounded-md">
-              <div className="text-[36px] mb-2">
-                <IoVideocamOutline />
-              </div>
-              <p className="text-[18px]">Call</p>
-            </div>
+            <CallButton />
+            <TextButton />
+            <VideoButton />
           </div>
         </div>
       </div>

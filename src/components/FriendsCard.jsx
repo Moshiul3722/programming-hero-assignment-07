@@ -1,8 +1,9 @@
 import Image from "next/image";
 
-const FriendsCard = ({ friendInfo }) => {
-  const { name, picture, days_since_contact, tags, status } = friendInfo;
-  console.log(friendInfo);
+const FriendsCard = ({ friendInfo, from }) => {
+  const { name, picture, days_since_contact, tags, status, bio, email } =
+    friendInfo;
+  console.log(friendInfo, "friendInfo");
 
   return (
     <div className="card bg-base-100 shadow-sm">
@@ -17,7 +18,23 @@ const FriendsCard = ({ friendInfo }) => {
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{name}</h2>
-        <p>{days_since_contact}d ago</p>
+        {from == "friendDetail" &&
+          (status === "overdue" ? (
+            <div className="text-white bg-[#EF4444] px-2 rounded-full">
+              Overdue
+            </div>
+          ) : status === "almost due" ? (
+            <div className="text-white bg-[#EFAD44] px-2 rounded-full">
+              Almost Due
+            </div>
+          ) : (
+            <div className="text-white bg-[#244D3F] px-2 rounded-full">
+              On-Track
+            </div>
+          ))}
+
+        {from == "homePage" && <p>{days_since_contact}d ago</p>}
+
         <span className="flex gap-2">
           {tags.map((tag, index) => (
             <div
@@ -28,19 +45,28 @@ const FriendsCard = ({ friendInfo }) => {
             </div>
           ))}
         </span>
-        {status === "overdue" ? (
-          <div className="text-white bg-[#EF4444] px-2 rounded-full">
-            Overdue
-          </div>
-        ) : status === "almost due" ? (
-          <div className="text-white bg-[#EFAD44] px-2 rounded-full">
-            Almost Due
-          </div>
-        ) : (
-          <div className="text-white bg-[#244D3F] px-2 rounded-full">
-            On-Track
+
+        {from == "friendDetail" && (
+          <div className="text-center">
+            <p className="italic">{`"${bio}"`}</p>
+            <p>Preferred: {email}</p>
           </div>
         )}
+
+        {from == "homePage" &&
+          (status === "overdue" ? (
+            <div className="text-white bg-[#EF4444] px-2 rounded-full">
+              Overdue
+            </div>
+          ) : status === "almost due" ? (
+            <div className="text-white bg-[#EFAD44] px-2 rounded-full">
+              Almost Due
+            </div>
+          ) : (
+            <div className="text-white bg-[#244D3F] px-2 rounded-full">
+              On-Track
+            </div>
+          ))}
       </div>
     </div>
   );

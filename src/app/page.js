@@ -34,7 +34,7 @@ export default async function Home() {
 
         <div className="grid grid-cols-4 gap-6 mt-10 mb-10">
           <div className="p-8 bg-white text-center rounded-md shadow-sm">
-            <h2 className="font-semibold text-[32px]">10</h2>
+            <h2 className="font-semibold text-[32px]">{friendsData.length}</h2>
             <p className="text-[18px] mt-2">Total Friends</p>
           </div>
           <div className="p-8 bg-white text-center rounded-md shadow-sm">
@@ -56,7 +56,11 @@ export default async function Home() {
           <div className="grid grid-cols-4 gap-4">
             {friendsData.map((friendInfo, index) => (
               <Link key={friendInfo.id} href={`/friends/${friendInfo.id}`}>
-                <FriendsCard key={index} friendInfo={friendInfo}></FriendsCard>
+                <FriendsCard
+                  from="homePage"
+                  key={index}
+                  friendInfo={friendInfo}
+                ></FriendsCard>
               </Link>
             ))}
           </div>
