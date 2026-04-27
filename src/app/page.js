@@ -3,16 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { GoPlus } from "react-icons/go";
 
-const friendsPromise = async () => {
-  const res = await fetch("http://localhost:3000/data.json");
-  const data = await res.json();
-  return data;
-};
-
 export default async function Home() {
   const res = await fetch("http://localhost:3000/data.json");
   const friendsData = await res.json();
-  console.log(friendsData, "Friends Data");
+  // console.log(friendsData, "Friends Data");
   return (
     <div className="bg-[#F8FAFC] pt-20 pb-20">
       <div className="w-7xl mx-auto">

@@ -3,7 +3,7 @@ import Image from "next/image";
 const FriendsCard = ({ friendInfo, from }) => {
   const { name, picture, days_since_contact, tags, status, bio, email } =
     friendInfo;
-  console.log(friendInfo, "friendInfo");
+  // console.log(friendInfo, "friendInfo");
 
   return (
     <div className="card bg-base-100 shadow-sm">
