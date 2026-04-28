@@ -4,12 +4,13 @@ import FriendsCard from "@/components/FriendsCard";
 import { BiMessageDots } from "react-icons/bi";
 import { FiArchive } from "react-icons/fi";
 import { IoTrashOutline, IoVideocamOutline } from "react-icons/io5";
-import { MdNotificationsPaused } from "react-icons/md";
+import { MdNotificationsPaused, MdVideoCall } from "react-icons/md";
 import { TbPhoneCall } from "react-icons/tb";
 import { format } from "date-fns";
 
 import { use, useContext, useEffect, useState } from "react";
 import { CallButtonContext } from "@/context/callButton.context";
+import { toast, Bounce } from "react-toastify";
 
 const DetailPageContent = ({ id }) => {
   const [allFriend, setAllFriend] = useState([]);
@@ -34,19 +35,38 @@ const DetailPageContent = ({ id }) => {
     return <div>Friend not found</div>;
   }
 
-  const { days_since_contact, goal, next_due_date } = singleFriend;
+  const { name, days_since_contact, goal, next_due_date } = singleFriend;
 
   const handleCallClick = () => {
     setCallFriends([...callFriends, { ...singleFriend, type: "callToFriend" }]);
+    toast(`✅ Calling with ${name}`, {
+      // style: {
+      //   width: "250px",
+      //   height: "30px",
+      // },
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
   const handleTextClick = () => {
     setCallFriends([...callFriends, { ...singleFriend, type: "textToFriend" }]);
+    toast(`✅ Text with ${name}`);
   };
   const handleVideoClick = () => {
     setCallFriends([
       ...callFriends,
       { ...singleFriend, type: "videoToFriend" },
     ]);
+    toast(`Calling with ${name}`, {
+      icon: <MdVideoCall style={{ fontSize: "38px" }} />,
+    });
   };
 
   console.log(callFriends, "Friend Detail Content");
