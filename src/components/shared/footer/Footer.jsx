@@ -40,7 +40,7 @@ const Footer = () => {
           </li>
         </ul>
 
-        <aside className="flex justify-between w-full py-7.5">
+        <aside className="flex justify-between w-full py-7 mt-7 border border-t-sky-100/10 border-l-0 border-r-0 border-b-0">
           <div>
             &copy; {new Date().getFullYear()} KeenKeeper. All rights reserved.
             Industries Ltd

@@ -32,7 +32,7 @@ const DetailPageContent = ({ id }) => {
   const singleFriend = allFriend.find((friend) => friend.id === parseInt(id));
 
   if (!singleFriend) {
-    return <div>Friend not found</div>;
+    return "";
   }
 
   const { name, days_since_contact, goal, next_due_date } = singleFriend;
@@ -44,7 +44,7 @@ const DetailPageContent = ({ id }) => {
       //   width: "250px",
       //   height: "30px",
       // },
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -57,7 +57,9 @@ const DetailPageContent = ({ id }) => {
   };
   const handleTextClick = () => {
     setCallFriends([...callFriends, { ...singleFriend, type: "textToFriend" }]);
-    toast(`✅ Text with ${name}`);
+    toast.success(`Text with ${name}`, {
+      position: "top-center",
+    });
   };
   const handleVideoClick = () => {
     setCallFriends([
@@ -65,6 +67,7 @@ const DetailPageContent = ({ id }) => {
       { ...singleFriend, type: "videoToFriend" },
     ]);
     toast(`Calling with ${name}`, {
+      position: "top-center",
       icon: <MdVideoCall style={{ fontSize: "38px" }} />,
     });
   };
