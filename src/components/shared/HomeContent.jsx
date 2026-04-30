@@ -3,7 +3,9 @@ import FriendsCard from "@/components/FriendsCard";
 import Image from "next/image";
 
 export default async function HomeContent() {
-  const res = await fetch("http://localhost:3000/data.json");
+  const res = await fetch("https://ph-a7-next.vercel.app/data.json", {
+    cache: "no-store",
+  });
   const friendsData = await res.json();
   console.log(friendsData, "Friends Data");
   return (

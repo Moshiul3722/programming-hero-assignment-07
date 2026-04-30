@@ -4,7 +4,9 @@ import Link from "next/link";
 import { GoPlus } from "react-icons/go";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/data.json");
+  const res = await fetch("https://ph-a7-next.vercel.app/data.json", {
+    cache: "no-store",
+  });
   const friendsData = await res.json();
   // console.log(friendsData, "Friends Data");
   return (
