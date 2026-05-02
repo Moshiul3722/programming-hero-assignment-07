@@ -16,7 +16,7 @@ const TimelineContent = () => {
   // show current date as format
   const today = new Date();
   const currentDate = format(today, "MMMM dd, yyyy");
-  console.log(callFriends, "Timeline");
+  // console.log(callFriends, "Timeline");
 
   // sorting calls based on type
   const getFilteredCalls = () => {
@@ -30,6 +30,7 @@ const TimelineContent = () => {
   const showAllCalls = () => {
     setSortingType("");
   };
+<<<<<<< HEAD
   // console.log(callFriends, "Yet found");
   return (
     <div className="">
@@ -56,6 +57,36 @@ const TimelineContent = () => {
             </ul>
           </div>
       {filteredCalls.length == 0 ? (
+=======
+
+  // console.log(callFriends, "Yet found");
+
+  return (
+    <div className="">
+      <div className="dropdown dropdown-right w-60">
+        <div tabIndex={0} role="button" className="btn mt-6 w-58">
+          Filter timeline <FaAngleDown />
+        </div>
+        <ul
+          tabIndex="-1"
+          className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+        >
+          <li onClick={showAllCalls}>
+            <a>Filter timeline</a>
+          </li>
+          <li onClick={() => setSortingType("textToFriend")}>
+            <a>Text</a>
+          </li>
+          <li onClick={() => setSortingType("callToFriend")}>
+            <a>Call</a>
+          </li>
+          <li onClick={() => setSortingType("videoToFriend")}>
+            <a>Video</a>
+          </li>
+        </ul>
+      </div>
+      {callFriends.length == 0 ? (
+>>>>>>> 05ca2eb (Little correction)
         <div className="flex justify-center flex-col items-center space-y-6">
           <h2 className="text-3xl font-bold text-[#ff2b2b]">
             Data not loaded yet!
@@ -68,7 +99,10 @@ const TimelineContent = () => {
         </div>
       ) : (
         <>
+<<<<<<< HEAD
          
+=======
+>>>>>>> 05ca2eb (Little correction)
           <div>
             {filteredCalls.map((call, index) => (
               <div

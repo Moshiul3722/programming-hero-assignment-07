@@ -38,7 +38,12 @@ const DetailPageContent = ({ id }) => {
   const { name, days_since_contact, goal, next_due_date } = singleFriend;
 
   const handleCallClick = () => {
-    setCallFriends([...callFriends, { ...singleFriend, type: "callToFriend" }]);
+    // setCallFriends([...callFriends, { ...singleFriend, type: "callToFriend" }]);
+
+    setCallFriends((callFriends) => [
+      ...callFriends,
+      { ...singleFriend, type: "callToFriend" },
+    ]);
     toast(`✅ Calling with ${name}`, {
       // style: {
       //   width: "250px",
@@ -72,7 +77,7 @@ const DetailPageContent = ({ id }) => {
     });
   };
 
-  console.log(callFriends, "Friend Detail Content");
+  // console.log(callFriends, "Friend Detail Content");
 
   return (
     <div className="grid grid-cols-4 gap-4">
