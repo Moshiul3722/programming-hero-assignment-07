@@ -30,23 +30,10 @@ const TimelineContent = () => {
   const showAllCalls = () => {
     setSortingType("");
   };
-  console.log(callFriends, "Yet found");
+  // console.log(callFriends, "Yet found");
   return (
     <div className="">
-      {callFriends.length == 0 ? (
-        <div className="flex justify-center flex-col items-center space-y-6">
-          <h2 className="text-3xl font-bold text-[#ff2b2b]">
-            Data not loaded yet!
-          </h2>
-          <Link href="/">
-            <button className="btn btn-outline btn-accent">
-              Back to Home page
-            </button>
-          </Link>
-        </div>
-      ) : (
-        <>
-          <div className="dropdown dropdown-right w-60">
+       <div className="dropdown dropdown-right w-60">
             <div tabIndex={0} role="button" className="btn mt-6 w-58">
               Filter timeline <FaAngleDown />
             </div>
@@ -68,6 +55,20 @@ const TimelineContent = () => {
               </li>
             </ul>
           </div>
+      {filteredCalls.length == 0 ? (
+        <div className="flex justify-center flex-col items-center space-y-6">
+          <h2 className="text-3xl font-bold text-[#ff2b2b]">
+            Data not loaded yet!
+          </h2>
+          <Link href="/">
+            <button className="btn btn-outline btn-accent">
+              Back to Home page
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <>
+         
           <div>
             {filteredCalls.map((call, index) => (
               <div
